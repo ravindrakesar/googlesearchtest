@@ -44,6 +44,11 @@ public class GoogleSearchPage {
         Assert.assertTrue(driver.findElement(By.name("q")).isDisplayed());
     }
 
+    public void verifySearchResults(String expectedResult) {
+
+        Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"rso\"]/div[1]/div/div/div[1]/a/h3")).getText().equalsIgnoreCase(expectedResult));
+    }
+
     public void performGoogleSearch(String keyword) {
         //Clear the input field
         driver.findElement(By.name("q")).clear();
@@ -53,7 +58,7 @@ public class GoogleSearchPage {
         //driver.findElement(By.xpath("/html/body/div[1]/div[4]")).click();
         //Click on submit
         driver.findElement(By.name("btnK")).click();
-        Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"rso\"]/div[1]/div/div/div[1]/a/h3")).getText().equalsIgnoreCase("Batman Begins - Wikipedia"));
+
     }
 
     public void closeBrowserGoogle() {

@@ -4,11 +4,13 @@ Feature: To test the google search functionality
   Scenario Outline: Navigate to google search page
 
     Given I have navigated to google search page
-    When google web page page title verification
-    Then google web page load is done
+    And I perform google web page page title verification
+    And I verify google web page load is done
     When I perform a search using a keyword <Keyword>
+    When I verify the search results <ExpectedResult>
     Then I close google web page
 
     Examples:
-    |Keyword|
-    |Batman begins|
+    |Keyword                  |ExpectedResult|
+    |Batman begins            |Batman Begins - Wikipedia|
+    |Tenet                    |Tenet (film) - Wikipedia |
