@@ -1,4 +1,4 @@
-@countdown
+@googlesearch
 Feature: To test the google search functionality
 
   Scenario: Navigate to google home page and verify fields
