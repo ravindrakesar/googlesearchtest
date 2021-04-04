@@ -5,6 +5,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
 
@@ -29,6 +31,7 @@ public class GoogleSearchPage {
         driver.get("https://www.google.com/");
         driver.manage().window().maximize();
 
+
     }
 
     public void verifyPageTitlegoogle() {
@@ -44,21 +47,30 @@ public class GoogleSearchPage {
         Assert.assertTrue(driver.findElement(By.name("q")).isDisplayed());
     }
 
+    public void verifyGooglePage() {
+
+        Assert.assertTrue(driver.findElement(By.name("q")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.name("btnI")).isEnabled());
+        Assert.assertTrue(driver.findElement(By.name("btnK")).isEnabled());
+    }
+
     public void verifySearchResults(String expectedResult) {
 
         Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"rso\"]/div[1]/div/div/div[1]/a/h3")).getText().equalsIgnoreCase(expectedResult));
     }
 
-    public void performGoogleSearch(String keyword) {
+    public void enterKeyword(String keyword) {
         //Clear the input field
         driver.findElement(By.name("q")).clear();
         //Enter the keyword
         driver.findElement(By.name("q")).sendKeys(keyword);
-        //Click outside the area
-        //driver.findElement(By.xpath("/html/body/div[1]/div[4]")).click();
-        //Click on submit
-        driver.findElement(By.name("btnK")).click();
+    }
 
+    public void clickSubmit(){
+        //Click on submit
+        WebDriverWait wait = new WebDriverWait(driver, 120);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("btnK")));
+        driver.findElement(By.name("btnK")).click();
     }
 
     public void closeBrowserGoogle() {

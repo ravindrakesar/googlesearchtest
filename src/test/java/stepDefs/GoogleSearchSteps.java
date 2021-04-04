@@ -25,9 +25,19 @@ public class GoogleSearchSteps {
         googleSearchPage.verifyPageLoadgoogle();
     }
 
-    @When("I perform a search using a keyword (.*)")
-    public void performGoogleSearch(String keyword) {
-        googleSearchPage.performGoogleSearch(keyword);
+    @And("I verify search fields and buttons displayed correctly")
+    public void verifySearchFieldAndButtons() {
+        googleSearchPage.verifyGooglePage();
+    }
+
+    @When("I enter a keyword (.*) in the search box")
+    public void enterKeyword(String keyword) {
+        googleSearchPage.enterKeyword(keyword);
+    }
+
+    @When("I click on the Google Search button")
+    public void clickSubmit() {
+        googleSearchPage.clickSubmit();
     }
 
     @When("I verify the search results (.*)")
